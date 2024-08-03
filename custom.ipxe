@@ -15,7 +15,7 @@ choose custom_choice || goto custom_exit
 goto ${custom_choice}
 
 :hbcd
-initrd http://192.168.1.4:80/HirensBootCD/ISO/
+initrd http://192.168.1.4:80/HirensBootCD/HBCD_PE_x64.iso
 chain memdisk iso raw ||
 
 :custom_exit
