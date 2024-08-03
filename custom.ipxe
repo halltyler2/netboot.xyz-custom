@@ -1,12 +1,22 @@
 #!ipxe
-###
-### netboot.xyz-custom menu
-###
-
+###################
+### custom menu
+###################
 :start
-echo Hello world!
-sleep 10
-goto custom_exit
+chain --autofree boot.cfg ||
+
+:custom
+clear custom_choice
+menu Menu
+item --gap
+item hbcd ${space} Hirens Boot CD
+
+choose custom_choice || goto custom_exit
+goto ${custom_choice}
+
+:hbcd
+initrd http://192.168.1.4:80/HirensBootCD/ISO/
+chain memdisk iso raw ||
 
 :custom_exit
-exit 0
+exit
